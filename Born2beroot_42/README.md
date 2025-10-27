@@ -6,3 +6,7 @@ diving into concepts like **Secure Path**, **Root Privileges**, **SUDO** and **S
 ***Diagram:***
 
 ![Logo](Born2beroot-diagram.png)
+
+Closer look for some blurred parts, sorry for the quality.
+
+![Logo](42_.png)
