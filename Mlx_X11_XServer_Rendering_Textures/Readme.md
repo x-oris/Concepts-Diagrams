@@ -1,4 +1,4 @@
-# Mlx, X11, XServer → Texture Raycasting & Rendering
+# Mlx | X11 | XServer → Texture Raycasting & Rendering
 ***
 ![Logo](Img/MLX.png)
 ***
