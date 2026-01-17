@@ -1,16 +1,16 @@
-## CPP Module 04
+# Cpp Polymorphism Types
 ***
 
 To enter the world of this module, we need first to know & understand the overall types of polymorphism:
 
 ***
-### 1. Static Polymorphism (Compile-Time Polymorphism) * (Ad-Hoc Polymorphism)
+### 1. Static Polymorphism (Compile-Time Polymorphism) | (Ad-Hoc Polymorphism)
 
 * ***Function Overloading***, same function name, difffernet parameter list, the polymorphism happens in the compile time, when it arrives into the runtime, the compiler has already changed the name of the polymorphic function using **Name Mangling**, by adding suffixes to the name, creating two seperate function, therefore the polymorphism has already dissolved at this point.
 
 * ***Operator Overloading***, Redifines how operators work for user-defined types, aslo resolved at compile time.
 
-### 2. Dynamic Polymorphism (Runtime Polymorphism) * (SubType Polymorphism)
+### 2. Dynamic Polymorphism (Runtime Polymorphism) | (SubType Polymorphism)
 
 * Virtual functions, requires ```virtual``` keyword in the base class, usese base class pointer/refrence, implemented via **Vtable**, without the ```vitual``` keyword base version is called.
 
@@ -243,3 +243,27 @@ Dog vtable:
 * Stored inside each object.
 * Points to that object's class vtable.
 ***
+
+The constructor sets the vptr, construction order matters;
+Let's say we have this order...
+``Animal`` constructor:
+* Sets ``Vptr`` that points to ``Animal`` Vtable.
+``Dog`` constructor:
+* Overwrites ```vptr``` to point to ```Dog``` Vtable.
+
+**Note to ease confusion**: Dog is an object (holding Dog & Animal at same point), therefore there is only one Vptr.
+
+So basically, when a derived object finishes construction, the object's ``vptr``, is updated to point to the derived class's vtable, and that vtable contains the address of the derived overide in the same slot as the base virtual function.
+
+The proccess of calling the appropriate function through the **Vtable** is called **Dynamic Dispatch**, (Virtual dispatch = Dynamic dispatch)
+
+* Read ``Vptr`` from object.
+* Index into vtable.
+* Fetch function pointer.
+* Call it with ``this``.
+
+The virtual dispatch happens only when the function is **Virtual** and the call is made through the base pointer or reference.
+No virtual dispatch occurs if the object is directly used, function is not virtual or inside of constructors/deconstructors of the **Base Class**.
+
+***To see the example for the non dispatch in constructor & deconstructor in the base class, Check the code in this folder (TODO)***.
+
